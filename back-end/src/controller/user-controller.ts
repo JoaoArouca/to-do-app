@@ -1,14 +1,19 @@
 import { NextFunction, Request, Response } from "express";
-import generateToken from "../tools/tokenGenerator";
 
 export default class UserController {
-  async register(req: Request, res: Response, next: NextFunction) {
-    try {
-      const token = generateToken(req.body);
 
-      return res.status(201).json({ token })
+  constructor(private service: any) {
+    this.service = service
+  }
+
+  register = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const newUser = await this.service.register(req.body)
+      
+      return res.status(201).json(newUser);
     } catch (error) {
-      next(error)
+      const handleError = error as Error;
+      return res.status(400).json(handleError.message)
     }
   }
 }
