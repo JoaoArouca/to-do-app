@@ -3,7 +3,7 @@ import * as sinon from 'sinon'
 import chai from 'chai'
 import chaiHttp = require('chai-http');
 
-import app from '../server';
+import app from '../app';
 
 import { describe, it } from 'mocha';
 import { Response } from 'superagent';
