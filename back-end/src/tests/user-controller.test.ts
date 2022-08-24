@@ -19,5 +19,15 @@ describe('User Controller - Test', () => {
     const chaiHttpResponde = await chai.request(app).post('/register');
 
     expect(chaiHttpResponde.status).to.be.eq(201)
-  })
-})
+  });
+
+  it('Registra o usuário e retorna um token válido', async () => {
+    const chaiHttpResponde = await chai.request(app).post('/register').send({
+      email: 'joao@email.com',
+      password: '123456',
+      name: 'João Victor Arouca'
+    });
+
+    expect(chaiHttpResponde.body.token).to.exist
+  });
+});
