@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
 export default class UserController {
 
@@ -6,7 +6,7 @@ export default class UserController {
     this.service = service
   }
 
-  register = async (req: Request, res: Response, next: NextFunction) => {
+  register = async (req: Request, res: Response) => {
     try {
       const newUser = await this.service.register(req.body)
       

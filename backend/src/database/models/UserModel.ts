@@ -3,7 +3,7 @@ import db from '.';
 import { IUser } from '../../interfaces';
 
 export default class User extends Model implements IUser {
-  public id!: number;
+  public id?: number | undefined;
   public name!: string;
   public email!: string;
   public password!: string;
