@@ -1,4 +1,5 @@
-
+import { decode } from 'jsonwebtoken';
+import generateToken from '../tools/tokenGenerator';
 import { IUser } from './../interfaces/index';
 
 class UserService {
@@ -8,11 +9,11 @@ class UserService {
   }
 
   async register (payload: IUser) {
-    this.validator.email(payload.email);
+    this.validator.isValidRegister(payload);
+    const { name, email } = payload;
 
-    // console.log(isValidEmail);
-    // console.log(payload);
-    
+    const token = generateToken({ name, email } as IUser)
+    return token;   
   }
 }
 
