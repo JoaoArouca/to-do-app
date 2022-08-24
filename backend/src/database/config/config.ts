@@ -4,7 +4,7 @@ import { Options } from 'sequelize';
 const config: Options = {
   username: process.env.DB_USER || 'root',
   password: process.env.DB_PASS || 'password',
-  database: 'To Do App',
+  database: 'To_Do_App',
   host: process.env.DB_HOST || 'localhost',
   port: Number(process.env.DB_PORT) || 3306,
   dialect: 'mysql',
@@ -14,4 +14,4 @@ const config: Options = {
   logging: false,
 };
 
-module.exports = config;
+export default config;
