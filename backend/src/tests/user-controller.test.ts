@@ -16,7 +16,11 @@ describe('User Controller - Test', () => {
   let chaiHttpResponde: Response
 
   it('Registrou novo usuário com sucesso', async () => {
-    const chaiHttpResponde = await chai.request(app).post('/register');
+    const chaiHttpResponde = await chai.request(app).post('/register').send({
+      email: 'joao@email.com',
+      password: '123456',
+      name: 'João Victor Arouca'
+    });
 
     expect(chaiHttpResponde.status).to.be.eq(201)
   });
@@ -30,4 +34,15 @@ describe('User Controller - Test', () => {
 
     expect(chaiHttpResponde.body.token).to.exist
   });
+
+  it('Testa o registro com um email inválido', async () => {
+    const chaiHttpResponde = await chai.request(app).post('/register').send({
+      email: 'invalid email',
+      password: '123456',
+      name: 'João Victor Arouca'
+    }); 
+    
+    expect(chaiHttpResponde.status).to.be.eq(400);
+  })
+
 });
